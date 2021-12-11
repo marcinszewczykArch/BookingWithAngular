@@ -1,0 +1,56 @@
+body {
+  /*font-family: 'Hind Siliguri', sans-serif;*/
+  font-family: "Century Gothic";
+  font-weight: 200;
+}
+
+/* max szerokość kolumny 1200px i wyśrodkowanie */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/*----------------------------------------------------------------------------------------------------*/
+
+/* flexbox - kafelki mają zajmować tyle samo miejsca */
+.menu_buttons_main > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap; /* dodane zawijanie */
+}
+
+/* kafelki mają wypełniać całą przestrzeń i być lekko przezroczyste */
+.menu_buttons_main > ul > li {
+  margin: 3px;
+  flex-grow: 1;
+  padding: 0.5rem;
+  font-weight: 300;
+  border: 1px solid;
+  border-color: black;
+  offset-distance: 11px;
+  color: black;
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+/* po najechaniu na kafelek usuwamy przezroczystość */
+.menu_buttons_main > ul > li:hover {
+  opacity: 1;
+}
+
+/* wyśrodkowanie tekstu na kafelkach i zmiana koloru linków */
+.menu_buttons_main > ul > li > a {
+  color: inherit;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+
+}
+
+/* kolor kafelków */
+.menu_buttons_main > ul  {
+  background-color: white;
+}

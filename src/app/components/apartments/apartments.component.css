@@ -1,0 +1,49 @@
+body {
+  /*font-family: 'Hind Siliguri', sans-serif;*/
+  font-family: "Century Gothic";
+  font-weight: 200;
+}
+
+/* max szerokość kolumny 1200px i wyśrodkowanie */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/*----------------------------------------------------------------------------------------------------*/
+
+/* flexbox - kafelki mają zajmować tyle samo miejsca */
+.apartments > tr {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap; /* dodane zawijanie */
+  weight: 40px;
+}
+
+/* kafelki mają wypełniać całą przestrzeń i być lekko przezroczyste */
+.apartments > tr > td > img {
+  max-height: 180px;
+  flex-grow: 1;
+  padding: 0.0rem;
+  font-weight: 500;
+  border: 2px solid;
+  color: white;
+  opacity: 0.8;
+}
+
+/* po najechaniu na kafelek usuwamy przezroczystość */
+.apartments > tr > td  > img:hover {
+  opacity: 1;
+}
+
+/* wyśrodkowanie tekstu na kafelkach i zmiana koloru linków */
+.apartments > tr > td > a {
+  color: inherit;
+  display: block;
+  text-align: center;
+  font-size: 10px;
+
+}

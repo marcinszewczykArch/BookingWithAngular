@@ -1,0 +1,31 @@
+
+<body>
+<!--<h2>{{firstName}}, podaj swoje nazwisko:</h2>-->
+
+<!--<input type="text" #lastNameLabel>-->
+
+<!--<button (click)="sayHello(lastNameLabel.value)">powitaj!</button>-->
+<!--{{messageForUser}}-->
+
+<!--<br><br>-->
+
+<div class="container">
+  <table class="apartments">
+
+    <tr>
+      <td *ngFor="let apartment of allApartments">
+        <img src="{{apartment.image}}">
+        <a>{{apartment.apartmentName}}</a>
+        <br>
+      </td>
+    </tr>
+
+  </table>
+</div>
+
+
+<button (click)="loadMyChildComponent();">More...</button>
+<app-apartments *ngIf="loaded"></app-apartments>
+
+
+</body>

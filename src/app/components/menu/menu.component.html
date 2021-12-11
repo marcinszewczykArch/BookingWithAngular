@@ -1,0 +1,28 @@
+<body>
+<header>
+  <div class="container">
+    <aside class="menu_buttons_main">
+      <ul>
+
+        <button (click)="loadApartments();"><h2>APARTAMENTY</h2></button>
+
+        <button (click)="loadReservations();"><h2>REZERWACJE</h2></button>
+
+        <button (click)="loadCleanings();"><h2>SPRZĄTANIA</h2></button>
+
+        <button (click)="loadMaintenance();"><h2>UTRZYMANIE</h2></button>
+
+        <button (click)="loadAdmin();"><h2>ADMIN</h2></button>
+
+      </ul>
+    </aside>
+  </div>
+</header>
+</body>
+
+
+<app-apartments *ngIf="loadedApartments"></app-apartments>
+<app-reservations *ngIf="loadedReservations"></app-reservations>
+<app-cleanings *ngIf="loadedCleanings"></app-cleanings>
+<app-maintenance *ngIf="loadedMaintenance"></app-maintenance>
+<app-admin *ngIf="loadedAdmin"></app-admin>

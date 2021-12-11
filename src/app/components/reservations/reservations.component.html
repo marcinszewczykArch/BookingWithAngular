@@ -1,0 +1,40 @@
+<body>
+
+  <div class="container">
+    <table class="apartments">
+      <thead>
+        <th>  id  </th>
+        <th>  reservation date  </th>
+<!--        <th>  reservation code  </th>-->
+        <th>  apartment  </th>
+        <th>  check in </th>
+        <th>  check out </th>
+        <th>  days  </th>
+        <th>  adults  </th>
+        <th>  children  </th>
+        <th>  small children  </th>
+        <th>  guest name  </th>
+        <th>  guest country  </th>
+        <th>  money transfer  </th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reservation of allReservations">
+          <td>{{reservation.id}}</td>
+          <td>{{reservation.reservationDate}}</td>
+<!--          <td>{{reservation.reservationCode}}</td>-->
+          <td>{{reservation.apartment.apartmentName}}</td>
+          <td>{{reservation.checkIn}}</td>
+          <td>{{reservation.checkOut}}</td>
+          <td>{{reservation.stayDuration}}</td>
+          <td>{{reservation.adults}}</td>
+          <td>{{reservation.children}}</td>
+          <td>{{reservation.smallChildren}}</td>
+          <td>{{reservation.guestName}}</td>
+          <td>{{reservation.guestCountry}}</td>
+          <td>{{reservation.moneyTransfer}}</td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+</body>
