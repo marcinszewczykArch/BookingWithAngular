@@ -1,1 +1,80 @@
-<p>cleanings works!</p>
+<body>
+
+  <div class="container">
+
+  <!--  <button (click)="loadReservationsAdd();"><h2>NEW RESERVATION</h2></button>-->
+  <!--  <button (click)="loadReservationsFilters();"><h2>FILTERS</h2></button>-->
+
+    <app-reservations-add *ngIf="loadedReservationsAdd"></app-reservations-add>
+    <app-reservations-filters *ngIf="loadedReservationsFilters"></app-reservations-filters>
+
+    <div ng-app ng-controller="MethodName">
+      Dzisiaj jest: {{todayDate}} <br>
+      back: {{daysBack}} <br>
+      forward: {{daysForward}} <br>
+      date back: {{dateBack}} <br>
+      date forward: {{dateForward}} <br>
+      future dates: <ng-container *ngFor="let futureDate of futureDates"> {{futureDate}} </ng-container> <br>
+      <br>
+
+      <form>
+        <label for="back">days back: </label>
+        <input id="back" type="number" name="back" min="0" step="1"value="0" max="999" required #back>
+        <br>
+        <label for="forward">days forward: </label>
+        <input id="forward" type="number" name="forward" min="0" step="1"value="0" max="999" required #forward>
+        <br>
+        <button (click)="backAndForward(back.value, forward.value)">Generate!</button>
+      </form>
+
+    </div>
+
+    <table class="apartments">
+      <thead>
+      <th>  cleaning date  </th>
+      <th>  cleaning person </th>
+      <th>  apartment  </th>
+      <th>  extra bedding  </th>
+      <th>  is done? </th>
+      </thead>
+      <tbody>
+
+
+
+
+<!--        today-->
+      <br><hr>
+        <ng-container *ngFor="let cleaning of allCleanings">
+        <ng-container *ngIf="cleaning.cleaningDate == todayDate">
+          {{todayDate}}
+        <tr>
+          <td></td>
+          <td>{{cleaning.cleaningPerson.people.firstName}}</td>
+          <td>{{cleaning.reservation.apartment.apartmentName}}</td>
+          <td>{{cleaning.extraBedding}}</td>
+          <td>{{cleaning.done}}</td>
+        </tr>
+        </ng-container>
+        </ng-container>
+      <br><hr>
+
+<!--        future-->
+<ng-container *ngFor="let futureDate of futureDates"> {{futureDate}} <br>
+  <ng-container *ngFor="let cleaning of allCleanings">
+    <ng-container *ngIf="cleaning.cleaningDate == futureDate">
+      <tr>
+        <td></td>
+        <td>{{cleaning.cleaningPerson.people.firstName}}</td>
+        <td>{{cleaning.reservation.apartment.apartmentName}}</td>
+        <td>{{cleaning.extraBedding}}</td>
+        <td>{{cleaning.done}}</td>
+      </tr>
+    </ng-container>
+  </ng-container>
+  <br>
+</ng-container>
+
+      </tbody>
+    </table>
+  </div>
+</body>

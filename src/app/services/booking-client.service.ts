@@ -1,6 +1,16 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient, HttpClientModule, HttpErrorResponse} from "@angular/common/http";
+import {catchError, Observable, throwError} from "rxjs";
+import { HttpHeaders } from '@angular/common/http';
+
+
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    // Authorization: 'my-auth-token'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +24,10 @@ export class BookingClientService {
     return this.httpClient.get<Reservation>('http://localhost:8080/api/reservations');
   }
 
+  public postReservation(reservation: ReservationTo): Observable<ReservationTo> {
+    return this.httpClient.post<ReservationTo>('http://localhost:8080/api/reservations', reservation, httpOptions);
+  }
+
   public getApartments(): Observable<Apartment>{
     return this.httpClient.get<Apartment>('http://localhost:8080/api/apartments');
   }
@@ -22,9 +36,9 @@ export class BookingClientService {
     return this.httpClient.get<User>('http://localhost:8080/api/users');
   }
 
-
-
-
+  public getCleaning(): Observable<Cleaning>{
+    return this.httpClient.get<Cleaning>('http://localhost:8080/api/cleaning');
+  }
 
 }
 
@@ -55,6 +69,21 @@ export interface Reservation {
   moneyTransfer: number;
 }
 
+export interface ReservationTo {
+  reservationCode: string;
+  apartment: string;
+  checkIn: string;
+  checkOut: string;
+  stayDuration: number;
+  adults: number;
+  children: number;
+  smallChildren: number;
+  guestName: string;
+  guestCountry: string;
+  reservationDate: string;
+  moneyTransfer: number;
+}
+
 export interface People {
   id: number;
   firstName: string;
@@ -71,3 +100,19 @@ export interface User {
   userRole: string;
 }
 
+export interface Cleaning {
+  id: number;
+  reservation: Reservation;
+  cleaningPerson: CleaningPerson;
+  extraBedding: number;
+  cleaningDate: string;
+  done: boolean;
+}
+
+export interface CleaningPerson {
+  id: number;
+  people: People;
+  workStart?: any;
+  workEnd?: any;
+  availabe: boolean;
+}

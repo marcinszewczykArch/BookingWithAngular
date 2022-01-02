@@ -12,7 +12,7 @@ export class apartmentsComponent implements OnInit {
   messageForUser: any;
   allReservations: any;
   allApartments: any;
-  loaded: any;
+  loadedMoreApartments: any;
 
   constructor(private bokingClientService: BookingClientService) {
     this.firstName = 'marcin';
@@ -34,7 +34,7 @@ export class apartmentsComponent implements OnInit {
 
 
   loadMyChildComponent() {
-    this.loaded = true;
+    this.loadedMoreApartments = true;
   }
 
 }

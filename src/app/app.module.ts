@@ -9,11 +9,17 @@ import { ReservationsComponent } from './components/reservations/reservations.co
 import { CleaningsComponent } from './components/cleanings/cleanings.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { ReservationsAddComponent } from './components/reservations-add/reservations-add.component';
+import { ReservationsFiltersComponent } from './components/reservations-filters/reservations-filters.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
+
     BrowserModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
@@ -23,6 +29,8 @@ import { AdminComponent } from './components/admin/admin.component';
     CleaningsComponent,
     MaintenanceComponent,
     AdminComponent,
+    ReservationsAddComponent,
+    ReservationsFiltersComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

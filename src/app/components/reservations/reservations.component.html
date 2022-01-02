@@ -1,6 +1,13 @@
 <body>
 
   <div class="container">
+
+    <button (click)="loadReservationsAdd();"><h2>NEW RESERVATION</h2></button>
+    <button (click)="loadReservationsFilters();"><h2>FILTERS</h2></button>
+
+    <app-reservations-add *ngIf="loadedReservationsAdd"></app-reservations-add>
+    <app-reservations-filters *ngIf="loadedReservationsFilters"></app-reservations-filters>
+
     <table class="apartments">
       <thead>
         <th>  id  </th>
@@ -18,7 +25,8 @@
         <th>  money transfer  </th>
       </thead>
       <tbody>
-        <tr *ngFor="let reservation of allReservations">
+        <ng-container *ngFor="let reservation of allReservations">
+        <tr (click)="reservation.expanded = !reservation.expanded">
           <td>{{reservation.id}}</td>
           <td>{{reservation.reservationDate}}</td>
 <!--          <td>{{reservation.reservationCode}}</td>-->
@@ -33,8 +41,15 @@
           <td>{{reservation.guestCountry}}</td>
           <td>{{reservation.moneyTransfer}}</td>
         </tr>
+          <ng-container *ngIf="reservation.expanded">
+            <tr>
+              <td colspan="4">{{reservation.guestName}}</td>
+              <td colspan="4"><button (click)="delete();"><h2>DELETE</h2></button></td>
+              <td colspan="4"><button (click)="edit();"><h2>EDIT</h2></button></td>
+            </tr>
+          </ng-container>
+        </ng-container>
       </tbody>
-
     </table>
   </div>
 </body>

@@ -1,0 +1,79 @@
+body {
+  /*font-family: 'Hind Siliguri', sans-serif;*/
+  font-family: "Century Gothic";
+  font-weight: 200;
+}
+
+/* max szerokość kolumny 1200px i wyśrodkowanie */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/*----------------------------------------------------------------------------------------------------*/
+
+/* ramka tabeli rezerwacji*/
+table, th, td {
+  border-bottom: 1px solid #ddd;
+  border-collapse: collapse;
+  text-align: left;
+  padding: 15px 15px;
+  text-size-adjust: auto;
+}
+
+table {
+  width: 100%;
+}
+
+
+/* co drugi wiersz tabeli szary*/
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* podświetlenie wiersza tabeli*/
+tr:hover {
+  background-color: yellow;
+}
+
+input, select {
+  text-align: right;
+  font-family: "Century Gothic";
+  font-size: 20px;
+  height: 30px;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing: border-box;
+  background-color: inherit;
+  border: none;
+  color: black;
+  padding: 0px 40px;
+  text-decoration: none;
+  margin: 0px;
+  cursor: pointer;
+}
+
+lable {
+  text-size-adjust: auto;
+  font-size: 20px;
+}
+
+button {
+  text-align: center;
+  font-family: "Century Gothic";
+  font-size: 20px;
+  height: 30px;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing: border-box;
+  background-color: cadetblue;
+  border: none;
+  color: black;
+  padding: 0px 0px;
+  text-decoration: none;
+  margin: 0px;
+  cursor: pointer;
+}
+

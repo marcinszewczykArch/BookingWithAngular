@@ -1,0 +1,58 @@
+body {
+  /*font-family: 'Hind Siliguri', sans-serif;*/
+  font-family: "Century Gothic";
+  font-weight: 200;
+}
+
+/* max szerokość kolumny 1200px i wyśrodkowanie */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/*----------------------------------------------------------------------------------------------------*/
+
+/* flexbox - kafelki mają zajmować tyle samo miejsca */
+/*table {*/
+/*  list-style: none;*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*  display: flex;*/
+/*  justify-content: space-evenly;*/
+/*  flex-wrap: wrap; !* dodane zawijanie *!*/
+/*  weight: 40px;*/
+/*}*/
+
+
+/* ramka tabeli rezerwacji*/
+table, th, td {
+  border-bottom: 1px solid #ddd;
+  border-collapse: collapse;
+  text-align: center;
+  padding: 5px;
+  /*text-size-adjust: auto;*/
+  /*width: 100%;*/
+}
+
+/* co drugi wiersz tabeli szary*/
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* podświetlenie wiersza tabeli*/
+tr:hover {
+  background-color: #dbe827;
+}
+
+button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 8px;
+  margin: 2px;
+}
+
