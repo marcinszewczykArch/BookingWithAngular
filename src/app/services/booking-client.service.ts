@@ -32,8 +32,8 @@ export class BookingClientService {
     return this.httpClient.get<Apartment>('http://localhost:8080/api/apartments');
   }
 
-  public getUsers(): Observable<User>{
-    return this.httpClient.get<User>('http://localhost:8080/api/users');
+  public getPeoples(): Observable<People>{
+    return this.httpClient.get<People>('http://localhost:8080/api/people');
   }
 
   public getCleaning(): Observable<Cleaning>{

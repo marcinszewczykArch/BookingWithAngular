@@ -1,7 +1,7 @@
 body {
   /*font-family: 'Hind Siliguri', sans-serif;*/
   font-family: "Century Gothic";
-  font-weight: 200;
+  font-size: 15px;
 }
 
 /* max szerokość kolumny 1200px i wyśrodkowanie */
@@ -28,15 +28,22 @@ body {
 table, th, td {
   border-bottom: 1px solid #ddd;
   border-collapse: collapse;
-  text-align: center;
+  text-align: left;
   padding: 5px;
   /*text-size-adjust: auto;*/
   /*width: 100%;*/
 }
 
-/* co drugi wiersz tabeli szary*/
-tr:nth-child(even) {
+/* sprzątający na szarym tle*/
+.cleaner {
   background-color: #f2f2f2;
+}
+
+/* expanded na zielonym tle*/
+.expanded {
+  background-color: #96ee8d;
+}
+.date {
 }
 
 /* podświetlenie wiersza tabeli*/

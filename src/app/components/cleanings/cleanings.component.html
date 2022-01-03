@@ -10,19 +10,21 @@
 
     <div ng-app ng-controller="MethodName">
       Dzisiaj jest: {{todayDate}} <br>
-      back: {{daysBack}} <br>
-      forward: {{daysForward}} <br>
-      date back: {{dateBack}} <br>
-      date forward: {{dateForward}} <br>
-      future dates: <ng-container *ngFor="let futureDate of futureDates"> {{futureDate}} </ng-container> <br>
-      <br>
+<!--      back: {{daysBack}} <br>-->
+<!--      forward: {{daysForward}} <br>-->
+<!--      date back: {{dateBack}} <br>-->
+<!--      date forward: {{dateForward}} <br>-->
+<!--      future dates: <ng-container *ngFor="let futureDate of futureDates"> {{futureDate}} </ng-container> <br>-->
+<!--      past dates: <ng-container *ngFor="let pastDate of pastDates"> {{pastDate}} </ng-container> <br>-->
+<!--      cleaners: <ng-container *ngFor="let people of allPeoples"> {{people.firstName}} </ng-container> <br>-->
+<!--      <br>-->
 
       <form>
-        <label for="back">days back: </label>
+        <label for="back">pokaż dni do tyłu: </label>
         <input id="back" type="number" name="back" min="0" step="1"value="0" max="999" required #back>
         <br>
-        <label for="forward">days forward: </label>
-        <input id="forward" type="number" name="forward" min="0" step="1"value="0" max="999" required #forward>
+        <label for="forward">pokaż dni do przodu: </label>
+        <input id="forward" type="number" name="forward" min="0" step="1"value="3" max="999" required #forward>
         <br>
         <button (click)="backAndForward(back.value, forward.value)">Generate!</button>
       </form>
@@ -34,45 +36,242 @@
       <th>  cleaning date  </th>
       <th>  cleaning person </th>
       <th>  apartment  </th>
-      <th>  extra bedding  </th>
-      <th>  is done? </th>
+      <th>  stayDuration  </th>
+      <th>  extra bedding </th>
       </thead>
       <tbody>
 
 
+      <!--        past-->
+      <ng-container *ngFor="let pastDate of pastDates">
+        <br>
+        <tr class="date">
+          <td colspan="5">{{getWeekday(pastDate)}} / {{pastDate}} /</td>
+        </tr>
+
+        <ng-container *ngFor="let people of allPeoples">
+          <ng-container *ngIf="shouldNameBeDisplayed(people,pastDate)">
+            <tr class="cleaner">
+              <td></td>
+              <td><b>{{people.firstName}}</b></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </ng-container>
+
+
+        <ng-container *ngFor="let cleaning of allCleanings">
+          <ng-container *ngIf="cleaning.cleaningDate == pastDate && cleaning.cleaningPerson.people.firstName == people.firstName">
+            <tr (click)="cleaning.expanded = !cleaning.expanded">
+              <td></td>
+              <td></td>
+              <td>{{cleaning.reservation.apartment.apartmentName}}</td>
+              <td>{{cleaning.reservation.stayDuration}}</td>
+              <td>{{cleaning.extraBedding}}</td>
+            </tr>
+            <ng-container *ngIf="cleaning.expanded">
+              <tr>
+                <td colspan="5">
+                  BRAKI: kawa, cukier, mydło, szampon, mop <br>
+                  NAPRAWY: dokecić kran w lazience, wymienić żarówkę, zabrać pled do prania
+                </td>
+              </tr>
+              <tr>
+                <td colspan="5">
+                  <button (click)="action1();"><h2>AKCJA_1</h2></button>
+                  <button (click)="action2();"><h2>AKCJA_2</h2></button>
+                </td>
+              </tr>
+              <tr>
+                <select>
+                  <option  *ngFor="let people of allPeoples">
+                    {{people.firstName}}
+                  </option>
+                </select>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+        <br>
+      </ng-container>
+      </ng-container>
 
 
 <!--        today-->
-      <br><hr>
-        <ng-container *ngFor="let cleaning of allCleanings">
-        <ng-container *ngIf="cleaning.cleaningDate == todayDate">
-          {{todayDate}}
-        <tr>
-          <td></td>
-          <td>{{cleaning.cleaningPerson.people.firstName}}</td>
-          <td>{{cleaning.reservation.apartment.apartmentName}}</td>
-          <td>{{cleaning.extraBedding}}</td>
-          <td>{{cleaning.done}}</td>
+      <br>
+        <tr class="date">
+          <td colspan="5"><b>{{getWeekday(todayDate)}}</b> / {{todayDate}} /</td>
+        </tr>
+
+        <ng-container *ngFor="let people of allPeoples">
+        <ng-container *ngIf="shouldNameBeDisplayed(people,todayDate)">
+        <tr class="cleaner">
+            <td></td>
+            <td><b>{{people.firstName}}</b></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         </ng-container>
+
+        <ng-container *ngFor="let cleaning of allCleanings">
+        <ng-container *ngIf="cleaning.cleaningDate == todayDate && cleaning.cleaningPerson.people.firstName == people.firstName">
+        <tr (click)="cleaning.expanded = !cleaning.expanded">
+          <td></td>
+          <td></td>
+          <td>{{cleaning.reservation.apartment.apartmentName}}</td>
+          <td>{{cleaning.reservation.stayDuration}}</td>
+          <td>{{cleaning.extraBedding}}</td>
+        </tr>
+
+        <ng-container *ngIf="cleaning.expanded">
+          <tr class="expanded">
+            <td colspan="2">
+              PO REZERWACJI:
+            </td>
+            <td colspan="2">
+              {{cleaning.reservation.guestName}} ({{cleaning.reservation.guestCountry}}, dorośli: {{cleaning.reservation.adults}}, dzieci: {{cleaning.reservation.children + cleaning.reservation.smallChildren}}) <br>
+              od {{cleaning.reservation.checkIn}}, {{getWeekday(cleaning.reservation.checkIn)}} <br>
+              do {{cleaning.reservation.checkOut}}, {{getWeekday(cleaning.reservation.checkOut)}}
+                <ng-container *ngIf="cleaning.reservation.checkOut == todayDate">
+                  <b>[W DNIU SPRZĄTANIA]</b>
+                </ng-container>
+                <ng-container *ngIf="cleaning.reservation.checkOut < todayDate">
+                  <b>[{{daysBetweenDates(cleaning.reservation.checkOut, todayDate)}} DNI WCZEŚNIEJ]</b>
+                </ng-container>
+            </td>
+            <td colspan="1">
+              <button (click)="action1();"><h2>IDŹ DO REZERWACJI</h2></button>
+            </td>
+          </tr>
+
+          <tr class="expanded">
+            <td colspan="2">
+              NASTĘPNA REZERWACJA:
+            </td>
+            <td colspan="2">
+              {{nextReservation(cleaning).guestName}} ({{nextReservation(cleaning).guestCountry}}, dorośli: {{nextReservation(cleaning).adults}}, dzieci: {{nextReservation(cleaning).children + nextReservation(cleaning).smallChildren}}) <br>
+              od {{nextReservation(cleaning).checkIn}}, {{getWeekday(nextReservation(cleaning).checkIn)}}
+                <ng-container *ngIf="nextReservation(cleaning).checkIn == todayDate">
+                  <b>[W DNIU SPRZĄTANIA]</b>
+                </ng-container>
+                <ng-container *ngIf="nextReservation(cleaning).checkIn != todayDate">
+                  <b>[{{daysBetweenDates(todayDate, nextReservation(cleaning).checkIn)}} DNI PÓŹNIEJ]</b>
+                </ng-container>
+              <br>
+              do {{nextReservation(cleaning).checkOut}}, {{getWeekday(nextReservation(cleaning).checkOut)}}
+            </td>
+            <td colspan="1">
+              <button (click)="action1();"><h2>IDŹ DO REZERWACJI</h2></button>
+            </td>
+          </tr>
+
+          <tr class="expanded">
+            <td colspan="2">
+              SPRZĄTAJĄCY:
+            </td>
+            <td colspan="2">
+            <select value="{{cleaning.cleaningPerson.people.firstName}}">
+              <ng-container *ngFor="let people of allPeoples">
+                <option value="{{people.firstName}}">
+                  {{people.firstName}}
+                </option>
+              </ng-container>
+            </select>
+            </td>
+            <td colspan="1">
+              <button (click)="action1();"><h2>ZMIEŃ OSOBĘ</h2></button>
+            </td>
+          </tr>
+
+          <tr class="expanded">
+            <td colspan="2">
+              DATA SPRZĄTANIA:
+            </td>
+            <td colspan="2">
+              <input type="date" value="{{cleaning.cleaningDate}}" >
+            </td>
+            <td colspan="1">
+              <button (click)="action2();"><h2>ZMIEŃ DATĘ</h2></button>
+            </td>
+          </tr>
+
+          <tr class="expanded">
+            <td colspan="5">
+              <button (click)="action1();"><h2>AKCJA_1</h2></button>
+              <button (click)="action2();"><h2>AKCJA_2</h2></button>
+              <button (click)="action2();"><h2>AKCJA_3</h2></button>
+              <button (click)="action2();"><h2>AKCJA_4</h2></button>
+            </td>
+          </tr>
         </ng-container>
-      <br><hr>
+
+        </ng-container>
+        </ng-container>
+        </ng-container>
+      <br>
+
 
 <!--        future-->
-<ng-container *ngFor="let futureDate of futureDates"> {{futureDate}} <br>
-  <ng-container *ngFor="let cleaning of allCleanings">
-    <ng-container *ngIf="cleaning.cleaningDate == futureDate">
-      <tr>
-        <td></td>
-        <td>{{cleaning.cleaningPerson.people.firstName}}</td>
-        <td>{{cleaning.reservation.apartment.apartmentName}}</td>
-        <td>{{cleaning.extraBedding}}</td>
-        <td>{{cleaning.done}}</td>
-      </tr>
-    </ng-container>
-  </ng-container>
-  <br>
-</ng-container>
+      <ng-container *ngFor="let futureDate of futureDates">
+        <br>
+        <tr class="date">
+          <td colspan="5">{{getWeekday(futureDate)}} / {{futureDate}} /</td>
+        </tr>
+
+        <ng-container *ngFor="let people of allPeoples">
+          <ng-container *ngIf="shouldNameBeDisplayed(people,futureDate)">
+          <tr class="cleaner">
+            <td></td>
+            <td><b>{{people.firstName}}</b></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          </ng-container>
+
+
+          <ng-container *ngFor="let cleaning of allCleanings">
+            <ng-container *ngIf="cleaning.cleaningDate == futureDate && cleaning.cleaningPerson.people.firstName == people.firstName">
+            <tr (click)="cleaning.expanded = !cleaning.expanded">
+              <td></td>
+              <td></td>
+              <td>{{cleaning.reservation.apartment.apartmentName}}</td>
+              <td>{{cleaning.reservation.stayDuration}}</td>
+              <td>{{cleaning.extraBedding}}</td>
+            </tr>
+
+            <ng-container *ngIf="cleaning.expanded">
+              <tr>
+                <td colspan="5">
+                  BRAKI: kawa, cukier, mydło, szampon, mop <br>
+                  NAPRAWY: dokecić kran w lazience, wymienić żarówkę, zabrać pled do prania
+                </td>
+              </tr>
+              <tr>
+                <td colspan="5">
+                  <button (click)="action1();"><h2>AKCJA_1</h2></button>
+                  <button (click)="action2();"><h2>AKCJA_2</h2></button>
+                </td>
+              </tr>
+              <tr>
+                <select>
+                  <option  *ngFor="let people of allPeoples">
+                    {{people.firstName}}
+                  </option>
+                </select>
+              </tr>
+            </ng-container>
+
+            </ng-container>
+          </ng-container>
+          <br>
+        </ng-container>
+      </ng-container>
+
+
+
 
       </tbody>
     </table>

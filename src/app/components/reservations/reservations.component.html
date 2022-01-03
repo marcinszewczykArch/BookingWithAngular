@@ -10,42 +10,36 @@
 
     <table class="apartments">
       <thead>
-        <th>  id  </th>
-        <th>  reservation date  </th>
-<!--        <th>  reservation code  </th>-->
-        <th>  apartment  </th>
-        <th>  check in </th>
-        <th>  check out </th>
-        <th>  days  </th>
-        <th>  adults  </th>
-        <th>  children  </th>
-        <th>  small children  </th>
-        <th>  guest name  </th>
-        <th>  guest country  </th>
-        <th>  money transfer  </th>
+        <th>  DATA  </th>
+        <th></th>
+        <th>  APARTAMENT </th>
+        <th>  GOŚĆ</th>
+        <th>  KRAJ  </th>
+        <th>  DNI  </th>
+        <th>  DOROŚLI  </th>
+        <th>  DZIECI </th>
+        <th>  MAŁE DZIECI  </th>
+
       </thead>
       <tbody>
         <ng-container *ngFor="let reservation of allReservations">
         <tr (click)="reservation.expanded = !reservation.expanded">
-          <td>{{reservation.id}}</td>
           <td>{{reservation.reservationDate}}</td>
-<!--          <td>{{reservation.reservationCode}}</td>-->
-          <td>{{reservation.apartment.apartmentName}}</td>
-          <td>{{reservation.checkIn}}</td>
-          <td>{{reservation.checkOut}}</td>
+          <td>ZAMELDOWANIE</td>
+          <td>{{reservation.apartment}}</td>
+          <td>{{reservation.guestName}}</td>
+          <td>{{reservation.guestCountry}}</td>
           <td>{{reservation.stayDuration}}</td>
           <td>{{reservation.adults}}</td>
           <td>{{reservation.children}}</td>
           <td>{{reservation.smallChildren}}</td>
-          <td>{{reservation.guestName}}</td>
-          <td>{{reservation.guestCountry}}</td>
-          <td>{{reservation.moneyTransfer}}</td>
         </tr>
           <ng-container *ngIf="reservation.expanded">
             <tr>
-              <td colspan="4">{{reservation.guestName}}</td>
-              <td colspan="4"><button (click)="delete();"><h2>DELETE</h2></button></td>
-              <td colspan="4"><button (click)="edit();"><h2>EDIT</h2></button></td>
+              <td colspan="1">{{reservation.guestName}}</td>
+              <td colspan="1"><button (click)="delete();"><h2>DELETE</h2></button></td>
+              <td colspan="1"><button (click)="edit();"><h2>EDIT</h2></button></td>
+              <td colspan="1"><button (click)="action1();"><h2>IDŹ DO REZERWACJI</h2></button></td>
             </tr>
           </ng-container>
         </ng-container>

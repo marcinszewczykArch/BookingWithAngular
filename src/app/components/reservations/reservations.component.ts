@@ -49,4 +49,7 @@ export class ReservationsComponent implements OnInit {
   edit() {
   }
 
+  action1() {
+
+  }
 }
