@@ -8,32 +8,51 @@
     <app-reservations-add *ngIf="loadedReservationsAdd"></app-reservations-add>
     <app-reservations-filters *ngIf="loadedReservationsFilters"></app-reservations-filters>
 
+    <div ng-app ng-controller="MethodName">
+      Dzisiaj jest: {{todayDate}} <br>
+      <form>
+        <label for="back">pokaż dni do tyłu: </label>
+        <input id="back" type="number" name="back" min="0" step="1"value="0" max="999" required #back>
+        <br>
+        <label for="forward">pokaż dni do przodu: </label>
+        <input id="forward" type="number" name="forward" min="0" step="1"value="3" max="999" required #forward>
+        <br>
+        <button (click)="backAndForward(back.value, forward.value)">Generate!</button>
+      </form>
+    </div>
+
     <table class="apartments">
       <thead>
-        <th>  DATA  </th>
+        <th></th>
         <th></th>
         <th>  APARTAMENT </th>
         <th>  GOŚĆ</th>
-        <th>  KRAJ  </th>
-        <th>  DNI  </th>
-        <th>  DOROŚLI  </th>
-        <th>  DZIECI </th>
-        <th>  MAŁE DZIECI  </th>
-
+        <th>  POBYT  </th>
       </thead>
       <tbody>
-        <ng-container *ngFor="let reservation of allReservations">
-        <tr (click)="reservation.expanded = !reservation.expanded">
-          <td>{{reservation.reservationDate}}</td>
-          <td>ZAMELDOWANIE</td>
-          <td>{{reservation.apartment}}</td>
-          <td>{{reservation.guestName}}</td>
-          <td>{{reservation.guestCountry}}</td>
-          <td>{{reservation.stayDuration}}</td>
-          <td>{{reservation.adults}}</td>
-          <td>{{reservation.children}}</td>
-          <td>{{reservation.smallChildren}}</td>
+
+      <!--        past-->
+      <ng-container *ngFor="let pastDate of pastDates">
+        <br>
+        <tr class="date">
+          <td colspan="1">{{getWeekday(pastDate)}} / {{pastDate}} /</td>
         </tr>
+
+        <tr class="checkin">
+          <td></td>
+          <td colspan="5">ZAMELDOWANIA</td>
+        </tr>
+
+        <ng-container *ngFor="let reservation of allReservations">
+          <ng-container *ngIf="reservation.checkIn == pastDate">
+          <tr (click)="reservation.expanded = !reservation.expanded">
+            <td></td>
+            <td></td>
+            <td>{{reservation.apartment}}</td>
+            <td>{{reservation.guestName}} ({{reservation.guestCountry}})</td>
+            <td>{{reservation.stayDuration}} dni</td>
+
+          </tr>
           <ng-container *ngIf="reservation.expanded">
             <tr>
               <td colspan="1">{{reservation.guestName}}</td>
@@ -43,6 +62,43 @@
             </tr>
           </ng-container>
         </ng-container>
+        </ng-container>
+
+
+
+        <tr class="checkout">
+          <td></td>
+          <td colspan="5">WYMELDOWANIA</td>
+        </tr>
+
+        <ng-container *ngFor="let reservation of allReservations">
+          <ng-container *ngIf="reservation.checkOut == pastDate">
+            <tr (click)="reservation.expanded = !reservation.expanded">
+              <td></td>
+              <td></td>
+              <td>{{reservation.apartment}}</td>
+              <td>{{reservation.guestName}} ({{reservation.guestCountry}})</td>
+              <td>{{reservation.stayDuration}} dni</td>
+
+            </tr>
+            <ng-container *ngIf="reservation.expanded">
+              <tr>
+                <td colspan="1">{{reservation.guestName}}</td>
+                <td colspan="1"><button (click)="delete();"><h2>DELETE</h2></button></td>
+                <td colspan="1"><button (click)="edit();"><h2>EDIT</h2></button></td>
+                <td colspan="1"><button (click)="action1();"><h2>IDŹ DO REZERWACJI</h2></button></td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+
+      </ng-container>
+
+
+
+
+
+
       </tbody>
     </table>
   </div>

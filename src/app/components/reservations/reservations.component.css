@@ -34,9 +34,17 @@ table, th, td {
   /*width: 100%;*/
 }
 
-/* co drugi wiersz tabeli szary*/
-tr:nth-child(even) {
+/* zameldowanie i wymeldowanie na kolorowym tle*/
+.checkin {
   background-color: #f2f2f2;
+}
+.checkout {
+  background-color: #f2f2f2;
+}
+
+/* expanded na zielonym tle*/
+.expanded {
+  background-color: #96ee8d;
 }
 
 /* podświetlenie wiersza tabeli*/
