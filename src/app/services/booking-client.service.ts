@@ -17,27 +17,30 @@ const httpOptions = {
 })
 export class BookingClientService {
 
+  ROOT = 'https://backvisitting.herokuapp.com';
+  // ROOT = 'http://localhost:8080';
+
   constructor(private httpClient: HttpClient) {
   }
 
   public getReservations(): Observable<Reservation>{
-    return this.httpClient.get<Reservation>('http://localhost:8080/api/reservations');
+    return this.httpClient.get<Reservation>(this.ROOT + '/api/reservations');
   }
 
   public postReservation(reservation: ReservationTo): Observable<ReservationTo> {
-    return this.httpClient.post<ReservationTo>('http://localhost:8080/api/reservations', reservation, httpOptions);
+    return this.httpClient.post<ReservationTo>(this.ROOT + '/api/reservations', reservation, httpOptions);
   }
 
   public getApartments(): Observable<Apartment>{
-    return this.httpClient.get<Apartment>('http://localhost:8080/api/apartments');
+    return this.httpClient.get<Apartment>(this.ROOT + '/api/apartments');
   }
 
   public getPeoples(): Observable<People>{
-    return this.httpClient.get<People>('http://localhost:8080/api/people');
+    return this.httpClient.get<People>(this.ROOT + '/api/people');
   }
 
   public getCleaning(): Observable<Cleaning>{
-    return this.httpClient.get<Cleaning>('http://localhost:8080/api/cleaning');
+    return this.httpClient.get<Cleaning>(this.ROOT + '/api/cleaning');
   }
 
 }
