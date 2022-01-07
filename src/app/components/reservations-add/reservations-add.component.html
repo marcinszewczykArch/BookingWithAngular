@@ -1,108 +1,117 @@
 
-<!--<form (ngSubmit)="onSubmit()">-->
-<!--<form [formGroup]="form" (ngSubmit)="onSubmit()">-->
-<!--  <table class="apartments">-->
-<!--    <thead>-->
-<!--      <tr>-->
-<!--        <td>-->
-<!--          <label for="reservationDate">reservation date: </label>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <input id="reservationDate" type="date" name="reservationDate" formControlName="reservationDate">-->
-<!--        </td>-->
-<!--      </tr>-->
+<form>
+  <table class="apartments">
+    <thead>
+      <tr>
+        <td>
+          <label for="reservationDate">reservation date: </label>
+        </td>
+        <td>
+          <input id="reservationDate" type="date" name="reservationDate" #reservationDate>
+        </td>
+      </tr>
 
-<!--      <tr>-->
-<!--        <td>-->
-<!--          <label for="apartment">apartment: </label>-->
-<!--        </td>-->
-<!--      <td>-->
-<!--        <select id="apartment">-->
-<!--          <option  *ngFor="let apartment of allApartments">-->
-<!--            {{apartment.apartmentName}}-->
-<!--          </option>-->
-<!--        </select>-->
-<!--      </td>-->
-<!--      </tr>-->
+      <tr>
+        <td>
+          <label for="apartment">apartment: </label>
+        </td>
+      <td>
+        <select id="apartment" #apartmentName>
+          <option  *ngFor="let apartment of allApartments">
+            {{apartment.apartmentName}}
+          </option>
+        </select>
+      </td>
+      </tr>
 
-<!--      <tr>-->
-<!--        <td>-->
-<!--          <label for="checkIn">checkIn date: </label>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <input id="checkIn" type="date" name="checkIn" required formControlName="checkIn">-->
-<!--        </td>-->
-<!--      </tr>-->
+      <tr>
+        <td>
+          <label for="checkIn">checkIn date: </label>
+        </td>
+        <td>
+          <input id="checkIn" type="date" name="checkIn" required #checkIn>
+        </td>
+      </tr>
 
-<!--      <tr>-->
-<!--        <td>-->
-<!--          <label for="checkOut">checkOut date: </label>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <input id="checkOut" type="date" name="checkOut" required>-->
-<!--        </td>-->
-<!--      </tr>-->
+      <tr>
+        <td>
+          <label for="checkOut">checkOut date: </label>
+        </td>
+        <td>
+          <input id="checkOut" type="date" name="checkOut" required #checkOut>
+        </td>
+      </tr>
 
-<!--      <tr>-->
-<!--        <td>-->
-<!--          <label for="adults">adults: </label>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <input id="adults" type="number" name="adults" min="1" step="1" value="2" max="9" required>-->
-<!--        </td>-->
-<!--      </tr>-->
+      <tr>
+        <td>
+          <label for="adults">adults: </label>
+        </td>
+        <td>
+          <input id="adults" type="number" name="adults" min="1" step="1" value="2" max="9" required #adults>
+        </td>
+      </tr>
 
-<!--      <tr>-->
-<!--        <td>-->
-<!--          <label for="children">children: </label>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <input id="children" type="number" name="children" min="0" step="1"value="0" max="9" required>-->
-<!--        </td>-->
-<!--      </tr>-->
+      <tr>
+        <td>
+          <label for="children">children: </label>
+        </td>
+        <td>
+          <input id="children" type="number" name="children" min="0" step="1"value="0" max="9" required #children>
+        </td>
+      </tr>
 
-<!--      <tr>-->
-<!--        <td>-->
-<!--          <label for="smallChildren">small children: </label>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <input id="smallChildren" type="number" name="smallChildren" min="0" max="9" step="1" value="0" required>-->
-<!--        </td>-->
-<!--      </tr>-->
+      <tr>
+        <td>
+          <label for="smallChildren">small children: </label>
+        </td>
+        <td>
+          <input id="smallChildren" type="number" name="smallChildren" min="0" max="9" step="1" value="0" required #smallChildren>
+        </td>
+      </tr>
 
-<!--      <tr>-->
-<!--        <td>-->
-<!--          <label for="guestName">guest Name: </label>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <input id="guestName" type="text" name="guestName" value="guestName" required maxlength ="20">-->
-<!--        </td>-->
-<!--      </tr>-->
+      <tr>
+        <td>
+          <label for="guestName">guest Name: </label>
+        </td>
+        <td>
+          <input id="guestName" type="text" name="guestName" value="guestName" required maxlength ="20" #guestName>
+        </td>
+      </tr>
 
-<!--      <tr>-->
-<!--        <td>-->
-<!--          <label for="guestCountry">guest country: </label>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <input id="guestCountry" type="text" name="guestCountry" value="guestCountry" required maxlength="20">-->
-<!--        </td>-->
-<!--      </tr>-->
+      <tr>
+        <td>
+          <label for="guestCountry">guest country: </label>
+        </td>
+        <td>
+          <input id="guestCountry" type="text" name="guestCountry" value="guestCountry" required maxlength="20" #guestCountry>
+        </td>
+      </tr>
 
-<!--      <tr>-->
-<!--        <td>-->
-<!--          <label for="moneyTransfer">money transfer: </label>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <input id="moneyTransfer" type="number" name="moneyTransfer" min="1" max="9999.99" step="0.01" value="0.00" required>-->
-<!--        </td>-->
-<!--      </tr>-->
-<!--    </thead>-->
-<!--  </table>-->
-<!--    <br>-->
-<!--    <button type="submit">Add reservation</button>-->
-<!--</form>-->
+      <tr>
+        <td>
+          <label for="moneyTransfer">money transfer: </label>
+        </td>
+        <td>
+          <input id="moneyTransfer" type="number" name="moneyTransfer" min="1" max="9999.99" step="0.01" value="0.00" required #moneyTransfer>
+        </td>
+      </tr>
+    </thead>
+  </table>
+    <br>
+    <button (click)="addReservation(
+    reservationDate.value,
+    apartmentName.value,
+    checkIn.value,
+    checkOut.value,
+    adults.value,
+    children.value,
+    smallChildren.value,
+    guestName.value,
+    guestCountry.value,
+    moneyTransfer.value
+    )">ADD</button>
+</form>
 
-<button (click)="test();"><h2>TEST</h2></button>
 {{check}}
 
 <br><br><br>

@@ -27,56 +27,39 @@ export class ReservationsAddComponent implements OnInit {
   }
 
 
-  // form = this.fb.group({
-  //   reservationDate: ["", [Validators.required, Validators.min(2)]],
-  //    checkIn: ["", [Validators.required]],
-  // });
-
-
-  // onSubmit() {
-  //   let r:  Reservation = {
-  //     "id": 222,
-  //     "reservationCode": "HMYKJ95JXN",
-  //     "apartment": this.allApartments[1],
-  //     "checkIn": "2021-11-10",
-  //     "checkOut": "2021-11-13",
-  //     "stayDuration": 3,
-  //     "adults": 2,
-  //     "children": 0,
-  //     "smallChildren": 0,
-  //     "guestName": "Magdalena",
-  //     "guestCountry": "Poland",
-  //     "reservationDate": "2021-10-21",
-  //     "moneyTransfer": 111.1
-  //   };
-  //
-  //   this.bookingClientService.postReservation(r);
-  //   // this.bookingClientService.postReservation(this.form.value);
-  // }
-
-  test(): void {
-    let r:  ReservationTo = {
-      reservationCode: "HMYKJ95JXN",
-      apartment: "Słoneczna kamienica - apartament z balkonem",
-      checkIn: "2022-11-10",
-      checkOut: "2022-11-13",
+  addReservation(reservationDate: string, apartmentName: string, checkIn: string, checkOut: string, adults: string, children: string, smallChildren: string, guestName: string, guestCountry: string, moneyTransfer: string) {
+    let reservationTo:  ReservationTo = {
+      reservationCode: "unknown",
+      apartment: apartmentName,
+      checkIn: checkIn,
+      checkOut: checkOut,
       stayDuration: 3,
-      adults: 2,
-      children: 0,
-      smallChildren: 0,
-      guestName: "Magdalena",
-      guestCountry: "Poland",
-      reservationDate: "2021-10-21",
-      moneyTransfer: 111.1
+      adults: Number(adults),
+      children: Number(children),
+      smallChildren: Number(smallChildren),
+      guestName: guestName,
+      guestCountry: guestCountry,
+      reservationDate: reservationDate,
+      moneyTransfer: Number(moneyTransfer)
     };
 
-
-    this.bookingClientService.postReservation(r)
+    this.bookingClientService.postReservation(reservationTo)
       .subscribe(r => {console.log(r)
       })
 
-    this.check = "dodano rezerwację dla " + r.guestName;
-
+    this.check = "dodano rezerwację: " + "(" +
+    reservationTo.reservationCode + ", " +
+    reservationTo.apartment + ", " +
+    reservationTo.checkIn + ", " +
+    reservationTo.checkOut + ", " +
+    reservationTo.stayDuration + ", " +
+    reservationTo.adults + ", " +
+    reservationTo.children + ", " +
+    reservationTo.smallChildren + ", " +
+    reservationTo.guestName + ", " +
+    reservationTo.guestCountry + ", " +
+    reservationTo.reservationDate + ", " +
+    reservationTo.moneyTransfer + ")";
   }
 }
 
