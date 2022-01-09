@@ -17,8 +17,9 @@ const httpOptions = {
 })
 export class BookingClientService {
 
-  ROOT = 'https://backvisitting.herokuapp.com';
-  // ROOT = 'http://localhost:8080';
+//BACKEND ON SERVER OR FROM LOCALHOST
+ //ROOT = 'https://backvisitting.herokuapp.com';
+  ROOT = 'http://localhost:8080';
 
   constructor(private httpClient: HttpClient) {
   }
