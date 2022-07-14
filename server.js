@@ -14,4 +14,4 @@ res.sendFile(path.join(__dirname+'/dist/BookingWithAngular/index.html'));
 
 // Start the app by listening on the default Heroku port
 //BACKEND ON SERVER (PORT 8080) OR FROM LOCALHOST (PORT 4200)
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 4200);
